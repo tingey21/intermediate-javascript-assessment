@@ -132,9 +132,12 @@ var binding = {
 		return this;
 	},
 	apply: function() {
+		
 		for (var i = 0; i < arguments.length; i++) {
+			
 			this.favorites.push(arguments[i]);
 		}
+		
 		return this;
 	}
 }

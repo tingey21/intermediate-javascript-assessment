@@ -15,6 +15,14 @@
 // CODE HERE...
 
 
+function callBinding(magicAnimals, updateAnimal, id){
+    
+           var filteredAnimal = magicAnimals.filter( (animal) => {
+                return animal.id == id
+            })
+    return updateAnimal("Trogdor")
+        
+    }
 
 // *************
 // * PROBLEM 2 *
@@ -28,6 +36,17 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
+
+
+
+function applyBinding(magicAnimals, updateAnimal, id){
+    
+           var filteredAnimal = magicAnimals.filter( (animal) => {
+                return animal.id == id
+            })
+    updateAnimal = updateAnimal.bind(filteredAnimal[0]);
+        return updateAnimal('being majestic', 'eating rainbows');
+    }
 
 
 
@@ -49,6 +68,17 @@ var foo;
 
 // CODE HERE...
 
+function promiseMe($q){
+    var defered = $q.defer();
+    
+        
+    
+        setTimeout(function() {
+            defered.resolve(foo = "bar");
+        }, 20);
+    
+        return defered.promise;
+}
 
 
 // *************
@@ -64,3 +94,22 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+function emailList($q, $http){
+    var defered = $q.defer();
+    
+    $http({
+        method: "GET",
+        url: '/api/users'
+    }
+    ).then(res => {
+        var emails = [];
+        for (var i = 0; i < res.data.length; i++) {
+            console.log(emails);
+            emails.push(res.data[i].email);
+
+        }
+        defered.resolve(emails);
+    });
+
+return defered.promise
+}
