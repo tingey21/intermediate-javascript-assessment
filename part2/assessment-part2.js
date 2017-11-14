@@ -42,9 +42,13 @@ function noWeakLink() {
   return $http({
     method: 'GET',
     url: '/api/users'
-  })
+  }).then( res => {firstUser = res.data[0]; return res.data}).then((res) =>{
+      thirdUser = res[2]; 
+     return(res[9])
+    })
   // CODE HERE...
-
+  
+  
 }
 
 
@@ -74,7 +78,7 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
-
+var boundToElephant = large.bind(elephant)
 
 
 // *************
@@ -89,7 +93,12 @@ function large() {
 
 // CODE HERE...
 
+function deathStar(capacity, crew){
+ 
+ return (capacity.bind(crew))
+  
 
+}
 
 // *************
 // * PROBLEM 4 *
@@ -104,7 +113,11 @@ function large() {
 
 // CODE HERE...
 
-
+function accountingOffice(assets){
+  return  function accountant(liabilities){
+    return(assets + liabilities)
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -128,7 +141,14 @@ function large() {
 // };
 
 // CODE HERE...
+function forgetter(name){
+  var list = []
+  return function rememberall(item){
+    list.push(item)
+    return(Object.assign({}, {name: name}, {remember: list }));
 
+  }
+}
 
 
 // *************
@@ -156,3 +176,50 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+function frodo(startingHungerValue, startingDangerValue)
+{
+  var hunger = startingHungerValue;
+  var danger = startingDangerValue;
+  console.log(hunger)
+  console.log(danger)
+  return{
+    dinnerOverFire: function(){
+      if(hunger >= 25){
+        hunger -= 25;
+      } else{
+        hunger = 0
+      }
+      if(danger <= 60){
+        danger += 40;
+      } else{
+        danger = 100;
+      }
+      return({
+        hunger: hunger,
+        danger: danger,
+        
+      })
+    },
+    hidingInBush: function(){ 
+      console.log('I GOT HERE')
+      if(hunger < 100){
+        hunger += 35;
+      }else{
+        hunger = 100
+
+      }
+      if(danger >= 20){
+        danger -= 20;
+      }else{
+        danger = 0
+      }
+      return({
+        hunger: hunger,
+        danger: danger
+      })
+    }
+  }}
+    
+  
+  
+
